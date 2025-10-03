@@ -5,15 +5,14 @@
 #include <QPushButton>
 #include <QSizePolicy>
 #include <QVBoxLayout>
-#include <QWidget>
+
 #include <qdrawutil.h>
 int main(int argc, char *argv[]) {
   QApplication app(argc, argv);
-
   QWidget window;
-  window.resize(1920, 1080);                   // 设置窗口大小
-  window.setWindowTitle("Swallow And Escape"); // 设置标题
-  window.show();                               // 显示窗口
+  window.resize(1920, 1080);
+  window.setWindowTitle("Swallow And Escape");
+  window.show();
 
   QPushButton *button = new QPushButton("Start", &window);
   button->setFixedSize(window.width() / 4, window.height() / 20);

@@ -17,6 +17,11 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 find_package(Qt6 COMPONENTS Quick Widgets Core REQUIRED)
 
+find_package(SDL2 REQUIRED)
+find_package(SDL2_image REQUIRED)
+find_package(SDL2_mixer REQUIRED)
+find_package(SDL2_ttf REQUIRED)
+
 qt_standard_project_setup(REQUIRES 6.5)
 
 add_subdirectory(src)
