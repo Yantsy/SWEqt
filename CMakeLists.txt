@@ -17,10 +17,10 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 find_package(Qt6 COMPONENTS Quick Widgets Core REQUIRED)
 
-find_package(SDL2 REQUIRED)
-find_package(SDL2_image REQUIRED)
-find_package(SDL2_mixer REQUIRED)
-find_package(SDL2_ttf REQUIRED)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(SDL2 REQUIRED sdl2)
+pkg_check_modules(SDL2IMAGE REQUIRED SDL2_image)
+pkg_check_modules(SDL2MIXER REQUIRED SDL2_mixer)
 
 qt_standard_project_setup(REQUIRES 6.5)
 
