@@ -23,7 +23,6 @@ SDL2WIDGET::SDL2WIDGET(QWidget *parent) : QWidget(parent) {
   }
 
   window = SDL_CreateWindowFrom((void *)this->winId());
-  SDL_GetWindowSize(window, &ww, &wh);
 
   renderer = SDL_CreateRenderer(
       window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
@@ -36,43 +35,6 @@ SDL2WIDGET::SDL2WIDGET(QWidget *parent) : QWidget(parent) {
   SDL_FreeSurface(surface);
   music = Mix_LoadMUS("../assets/bg1.mp3");
   Mix_PlayMusic(music, -1);
-
-  thickness = 15;
-
-  map1.x = ww / 8;
-  map1.y = wh / 16;
-  map1.w = ww * 3 / 4;
-  map1.h = wh * 3 / 4;
-
-  map2.x = map1.x + thickness;
-  map2.y = map1.y + thickness;
-  map2.w = map1.w - thickness * 2;
-  map2.h = map1.h - thickness * 2;
-
-  pdir = 1;
-  ndir = 0;
-  cpdir = 1;
-  cndir = 0;
-
-  fx = (rand() % (map2.w - map2.x)) + map2.x;
-  fy = (rand() % (map2.h - map2.y)) + map2.y;
-
-  block.x = ww / 2;
-  block.y = wh / 2;
-  block.w = 15;
-  block.h = 15;
-  speed = block.w / 3;
-  segments.push_back(block);
-  cblock.x = map2.x;
-  cblock.y = map2.y;
-  cblock.w = 15;
-  cblock.h = 15;
-  csegments.push_back(cblock);
-  food.x = fx;
-  food.y = fy;
-  food.w = 15;
-  food.h = 15;
-  foods.push_back(food);
 
   timer = new QTimer(this);
   connect(timer, SIGNAL(timeout()), this, SLOT(render()));
@@ -130,7 +92,50 @@ void boundarycheck(SDL_Rect *object, SDL_Rect map) {
     object->y = map.y + map.h - object->w;
 };
 void SDL2WIDGET::render() {
+  SDL_Rect map1, map2, block, cblock, food;
+  std::vector<SDL_Rect> segments;
+  std::vector<SDL_Rect> csegments;
+  std::vector<SDL_Rect> foods;
+  std::vector<int> neighbors;
+  thickness = 15;
+  ww = 1920;
+  wh = 1080;
+  map1.x = ww / 8;
+  map1.y = wh / 16;
+  map1.w = ww * 3 / 4;
+  map1.h = wh * 3 / 4;
+
+  map2.x = map1.x + thickness;
+  map2.y = map1.y + thickness;
+  map2.w = map1.w - thickness * 2;
+  map2.h = map1.h - thickness * 2;
+
+  pdir = 1;
+  ndir = 0;
+  cpdir = 1;
+  cndir = 0;
+
+  fx = (rand() % (map2.w - map2.x)) + map2.x;
+  fy = (rand() % (map2.h - map2.y)) + map2.y;
+
+  block.x = ww / 2;
+  block.y = wh / 2;
+  block.w = 15;
+  block.h = 15;
+  speed = block.w / 3;
+  segments.push_back(block);
+  cblock.x = map2.x;
+  cblock.y = map2.y;
+  cblock.w = 15;
+  cblock.h = 15;
+  csegments.push_back(cblock);
+  food.x = fx;
+  food.y = fy;
+  food.w = 15;
+  food.h = 15;
+  foods.push_back(food);
   SDL_Event e;
+
   while (SDL_PollEvent(&e)) {
     switch (e.type) {
     case SDL_KEYDOWN: {
@@ -144,7 +149,7 @@ void SDL2WIDGET::render() {
   td = abs(cblock.x - food.x) + abs(cblock.y - speed - food.y);
   bd = abs(cblock.x - food.x) + abs(cblock.y + speed - food.y);
 
-  std::vector<int> neighbors = {ld, rd, td, bd};
+  neighbors = {ld, rd, td, bd};
 
   md = std::min({neighbors[0], neighbors[1], neighbors[2], neighbors[3]});
   if (md == neighbors[0]) {
@@ -223,9 +228,9 @@ void SDL2WIDGET::render() {
         std::abs(block.y - csegments[seg].y) < 15) {
     }
   }
-  SDL_SetRenderDrawColor(renderer, 165, 222, 229, 255);
-  SDL_RenderClear(renderer);
 
+  SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+  SDL_RenderClear(renderer);
   SDL_SetRenderDrawColor(renderer, 254, 253, 202, 200);
   SDL_RenderFillRect(renderer, &map1);
 

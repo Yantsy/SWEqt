@@ -12,7 +12,7 @@ class SDL2WIDGET : public QWidget {
   Q_OBJECT
 
 public:
-  SDL2WIDGET(QWidget *parent = nullptr);
+  explicit SDL2WIDGET(QWidget *parent = nullptr);
   ~SDL2WIDGET();
   QPaintEngine *paintEngine() const override { return nullptr; }
 
@@ -24,13 +24,10 @@ private:
   SDL_Surface *surface;
   SDL_Texture *texture;
   Mix_Music *music;
-  SDL_Rect map1, map2, block, cblock, food;
-  std::vector<SDL_Rect> segments;
-  std::vector<SDL_Rect> csegments;
-  std::vector<SDL_Rect> foods;
+
+  QTimer *timer;
 
 private:
-  QTimer *timer;
   int ww, wh;
   int thickness;
   int ndir, pdir, cndir, cpdir;
