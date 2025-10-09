@@ -24,6 +24,7 @@ private:
   QGraphicsView *view;
   QGraphicsItem *player, *computer, *map, *fruit;
   QGraphicsSvgItem *maptexture;
+  int ratio;
   void setupScene();
 
   // private slots:
