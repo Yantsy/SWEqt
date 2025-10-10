@@ -9,16 +9,31 @@ game::game(QWidget *parent) : QWidget(parent) {
   connect(timer, SIGNAL(timeout()), this, SLOT(update()));
   timer->start(1000 / 60);*/
 }
-game::~game() { std::cout << "game over" << std::endl; }
+game::~game() {
+  std::cout << "game over" << std::endl;
+  // delete timer;
+  delete scene;
+  delete view;
+  // delete player;
+  // delete computer;
+  // delete fruit;
+  // delete animationwindow;
+  // delete toolbar;
+  // delete pauseui;
+  // delete maps;
+}
 
 void game::setupScene() {
+
+  // scene setup
   scene = new QGraphicsScene(this);
-  scene->setSceneRect(0, 0, 1920 * 0.75, 1080 * 0.75);
-  scene->setBackgroundBrush(QBrush(QColor(177, 226, 255, 0)));
-  maptexture = new QGraphicsSvgItem(":/assets/m1.svg");
+  scene->setSceneRect(0, 0, 1920, 1080);
+  scene->setBackgroundBrush(QBrush(QColor(177, 226, 255, 125)));
 
-  scene->addItem(maptexture);
+  // items setup
+  maps = new QGraphicsPixmapItem(QPixmap(":/assets/m1.png"));
 
+  // view setup
   view = new QGraphicsView(scene, this);
   view->setRenderHints(QPainter::Antialiasing |
                        QPainter::SmoothPixmapTransform);
@@ -28,11 +43,21 @@ void game::setupScene() {
   view->setFrameShape(QFrame::NoFrame);
   view->setAlignment(Qt::AlignTop | Qt::AlignLeft);
   view->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
-  maptexture->setTransform(
-      QTransform().scale(scene->width() / maptexture->boundingRect().width() /
-                             view->transform().m11(),
-                         scene->height() / maptexture->boundingRect().height() /
-                             view->transform().m22()));
+
+  // add items to the scene
+  scene->addItem(maps);
+
+  // set item scale
+  retransform(maps, view->transform(), 1920, 1080, 20, 0);
 
   view->show();
+}
+
+void retransform(QGraphicsItem *item, QTransform t, int w, int h, qreal dx,
+                 qreal dy) {
+  QTransform t1;
+  qreal rx = w / item->boundingRect().width();
+  qreal ry = h / item->boundingRect().height();
+
+  item->setTransform(QTransform().scale(rx, ry).translate(dx, dy));
 }

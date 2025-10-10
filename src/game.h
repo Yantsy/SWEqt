@@ -6,6 +6,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsSvgItem>
 #include <QGraphicsView>
+#include <QPoint>
 #include <QTimer>
 #include <QWidget>
 #include <QtSvg>
@@ -22,12 +23,14 @@ private:
   QTimer *timer;
   QGraphicsScene *scene;
   QGraphicsView *view;
-  QGraphicsItem *player, *computer, *map, *fruit;
-  QGraphicsSvgItem *maptexture;
+  QGraphicsItem *player, *computer, *fruit, *animationwindow, *toolbar,
+      *pauseui, *maps;
   int ratio;
   void setupScene();
 
   // private slots:
   // void update();
 };
+void retransform(QGraphicsItem *item, QTransform t, int w, int h, qreal dx,
+                 qreal dy);
 #endif
