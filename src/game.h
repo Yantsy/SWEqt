@@ -31,6 +31,6 @@ private:
   // private slots:
   // void update();
 };
-void retransform(QGraphicsItem *item, QTransform t, int w, int h, qreal dx,
-                 qreal dy);
+void itemsetup(std::string image, QGraphicsItem *item, QGraphicsScene *scene,
+               int w, int h, qreal x, qreal y);
 #endif

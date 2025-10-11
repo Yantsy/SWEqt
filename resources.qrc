@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>assets/m1.svg</file>
-        <file>assets/m1.png</file>
+        <file>assets/maps.png</file>
     </qresource>
 </RCC>

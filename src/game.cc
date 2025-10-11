@@ -28,36 +28,31 @@ void game::setupScene() {
   // scene setup
   scene = new QGraphicsScene(this);
   scene->setSceneRect(0, 0, 1920, 1080);
-  scene->setBackgroundBrush(QBrush(QColor(177, 226, 255, 125)));
-
-  // items setup
-  maps = new QGraphicsPixmapItem(QPixmap(":/assets/m1.png"));
+  scene->setBackgroundBrush(QBrush(QColor(2, 2, 2, 125)));
 
   // view setup
   view = new QGraphicsView(scene, this);
   view->setRenderHints(QPainter::Antialiasing |
                        QPainter::SmoothPixmapTransform);
-  view->resize(scene->sceneRect().width(), scene->sceneRect().height());
+  view->setFixedSize(1920, 1080);
   view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
   view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
   view->setFrameShape(QFrame::NoFrame);
   view->setAlignment(Qt::AlignTop | Qt::AlignLeft);
-  view->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
 
-  // add items to the scene
-  scene->addItem(maps);
-
-  // set item scale
-  retransform(maps, view->transform(), 1920, 1080, 20, 0);
+  // items setup scale: 0.96, 0.915
+  itemsetup("maps", maps, scene, 1249, 669, 70, 65);
+  itemsetup("maps", animationwindow, scene, 449, 669, 1364, 65);
+  itemsetup("maps", toolbar, scene, 1743, 200, 70, 769);
 
   view->show();
 }
-
-void retransform(QGraphicsItem *item, QTransform t, int w, int h, qreal dx,
-                 qreal dy) {
-  QTransform t1;
-  qreal rx = w / item->boundingRect().width();
-  qreal ry = h / item->boundingRect().height();
-
-  item->setTransform(QTransform().scale(rx, ry).translate(dx, dy));
+void itemsetup(std::string image, QGraphicsItem *item, QGraphicsScene *scene,
+               int w, int h, qreal x, qreal y) {
+  QString imgpath =
+      QString(":/assets/") + QString::fromStdString(image) + QString(".png");
+  QPixmap preimage(imgpath);
+  item = scene->addPixmap(QPixmap(
+      preimage.scaled(w, h, Qt::IgnoreAspectRatio, Qt::SmoothTransformation)));
+  item->setPos(x, y);
 }

@@ -14,11 +14,11 @@ int main(int argc, char *argv[]) {
   mainwindow.resize(1920, 1080);
   mainwindow.setWindowTitle("Swallow And Escape");
   game game(&mainwindow);
-  QVBoxLayout *layout = new QVBoxLayout();
+  /*QVBoxLayout *layout = new QVBoxLayout();
   QHBoxLayout *hlayout = new QHBoxLayout();
   hlayout->addWidget(&game);
   layout->addLayout(hlayout);
-  mainwindow.setLayout(layout);
+  mainwindow.setLayout(layout);*/
   mainwindow.show();
 
   return app.exec(); // 进入事件循环
