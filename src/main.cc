@@ -1,4 +1,4 @@
-#include "../src/game.h"
+#include "../src/home.h"
 #include <QApplication>
 #include <QGridLayout>
 #include <QHBoxLayout>
@@ -10,16 +10,13 @@
 
 int main(int argc, char *argv[]) {
   QApplication app(argc, argv);
-  QWidget mainwindow;
-  mainwindow.resize(1920, 1080);
-  mainwindow.setWindowTitle("Swallow And Escape");
-  game game(&mainwindow);
+  home home;
   /*QVBoxLayout *layout = new QVBoxLayout();
   QHBoxLayout *hlayout = new QHBoxLayout();
   hlayout->addWidget(&game);
   layout->addLayout(hlayout);
   mainwindow.setLayout(layout);*/
-  mainwindow.show();
+  home.show();
 
   return app.exec(); // 进入事件循环
 }

@@ -2,6 +2,8 @@ qt_add_executable(${PROJECT_NAME}
     ../src/main.cc
     ../src/game.cc
     ../src/game.h
+    ../src/home.cc
+    ../src/home.h
     
   
 )

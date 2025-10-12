@@ -1,36 +1,32 @@
 #ifndef SDL2WIDGET_H
 #define SDL2WIDGET_H
-#include <QBrush>
-#include <QGraphicsItem>
-#include <QGraphicsPixmapItem>
-#include <QGraphicsScene>
-#include <QGraphicsSvgItem>
-#include <QGraphicsView>
-#include <QPoint>
-#include <QTimer>
-#include <QWidget>
-#include <QtSvg>
-#include <QtSvgWidgets>
 
+#include <QGraphicsView>
+#include <QGraphicsWidget>
+#include <QWidget>
 class game : public QWidget {
   Q_OBJECT
 
 public:
-  explicit game(QWidget *parent = nullptr);
+  game(QWidget *parent = nullptr);
   ~game();
 
 private:
   QTimer *timer;
-  QGraphicsScene *scene;
-  QGraphicsView *view;
-  QGraphicsItem *player, *computer, *fruit, *animationwindow, *toolbar,
-      *pauseui, *maps;
+  QGraphicsScene *scene = nullptr;
+  QGraphicsView *view = nullptr;
+  QGraphicsItem *player = nullptr, *computer = nullptr, *fruit = nullptr,
+                *animationwindow = nullptr, *toolbar = nullptr, *bgp = nullptr,
+                *pauseui = nullptr, *maps = nullptr;
+  QWidget *gamewindow = nullptr;
   int ratio;
   void setupScene();
+  QGraphicsItem *itemsetup(std::string image, QGraphicsItem *item,
+                           QGraphicsScene *scene, int w, int h, qreal x,
+                           qreal y, int z);
 
   // private slots:
   // void update();
 };
-void itemsetup(std::string image, QGraphicsItem *item, QGraphicsScene *scene,
-               int w, int h, qreal x, qreal y);
+
 #endif
