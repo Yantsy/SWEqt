@@ -1,4 +1,5 @@
 #include "home.h"
+#include "game.h"
 #include <iostream>
 home::home(QWidget *parent) : QWidget(parent) {
   // 游戏主逻辑
@@ -16,21 +17,24 @@ home::home(QWidget *parent) : QWidget(parent) {
 home::~home() { std::cout << "program over" << std::endl; };
 
 void home::setupHomeUI() {
-  // home button setup
-  this->resize(680, 480);
+  // homepalette settup
+  this->resize(3140 / 4, 2560 / 4);
   this->setWindowTitle("Swallow And Escape");
-  homebgp = QPixmap(":/assets/bgp.jpg")
+  homebgp = QPixmap(":/assets/bgp.png")
                 .scaled(this->size(), Qt::IgnoreAspectRatio,
                         Qt::SmoothTransformation);
   homepalette.setBrush(this->backgroundRole(), QBrush(homebgp));
   this->setPalette(homepalette);
-  startbutton = new QPushButton("Start Game", this);
-  startbutton->setGeometry(270, 100, 140, 40);
-  buttonsetup(continuebutton, "Continue", this, 270, 160, 140, 40);
-  buttonsetup(loadbutton, "Load Game", this, 270, 220, 140, 40);
-  buttonsetup(settingbutton, "Setting", this, 270, 280, 140, 40);
-  buttonsetup(rankbutton, "Rank", this, 270, 340, 140, 40);
-  buttonsetup(quitgamebutton, "Quit Game", this, 270, 400, 140, 40);
+  // buttons setup
+  startbutton = buttonsetup(startbutton, "Start Game", this, 322, 100, 140, 40);
+  continuebutton =
+      buttonsetup(continuebutton, "Continue", this, 322, 160, 140, 40);
+  loadbutton = buttonsetup(loadbutton, "Load Game", this, 322, 220, 140, 40);
+  settingbutton =
+      buttonsetup(settingbutton, "Setting", this, 322, 280, 140, 40);
+  rankbutton = buttonsetup(rankbutton, "Rank", this, 322, 340, 140, 40);
+  quitgamebutton =
+      buttonsetup(quitgamebutton, "Quit Game", this, 322, 400, 140, 40);
 }
 
 void home::startGame() {
@@ -38,7 +42,7 @@ void home::startGame() {
   game *gamepage = new game();
 
   gamepage->show();
-  this->showMinimized();
+  this->close();
 }
 QPushButton *home::buttonsetup(QPushButton *button, std::string text,
                                QWidget *parent, int x, int y, int w, int h) {

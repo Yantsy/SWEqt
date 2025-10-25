@@ -1,6 +1,5 @@
 #pragma once
 
-#include "game.h"
 #include <QBrush>
 #include <QGraphicsItem>
 #include <QGraphicsPixmapItem>

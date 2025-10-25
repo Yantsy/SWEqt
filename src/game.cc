@@ -3,12 +3,8 @@
 
 game::game(QWidget *parent) : QWidget(parent) {
   // 游戏主逻辑
-  std::cout << "[v0] game constructor started" << std::endl;
+
   setupScene();
-  std::cout << "[v0] game constructor completed" << std::endl;
-  /*timer = new QTimer(this);
-  connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-  timer->start(1000 / 60);*/
 }
 void game::setupScene() {
 
@@ -31,7 +27,7 @@ void game::setupScene() {
   view->setFrameShape(QFrame::NoFrame);
   view->setAlignment(Qt::AlignTop | Qt::AlignLeft);
 
-  // items setup scale: 0.96, 0.915
+  // ui item setup scale: 0.96, 0.915
   itemsetup("maps.png", maps, scene, 1249, 669, 70, 65, 2);
   itemsetup("maps.png", animationwindow, scene, 449, 669, 1364, 65, 2);
   itemsetup("maps.png", toolbar, scene, 1743, 200, 70, 769, 2);
@@ -40,19 +36,10 @@ void game::setupScene() {
   view->show();
   gamewindow->show();
 }
-game::~game() {
-  std::cout << "game over" << std::endl;
-  // delete timer;
-  // delete scene;
-  // delete view;
-  // delete player;
-  // delete computer;
-  // delete fruit;
-  // delete animationwindow;
-  // delete toolbar;
-  // delete pauseui;
-  // delete maps;
-  // delete bgp;
+game::~game() { std::cout << "game over" << std::endl; }
+
+void game::update() {
+  // game update logic
 }
 QGraphicsItem *game::itemsetup(std::string image, QGraphicsItem *item,
                                QGraphicsScene *scene, int w, int h, qreal x,

@@ -25,8 +25,8 @@ private:
                            QGraphicsScene *scene, int w, int h, qreal x,
                            qreal y, int z);
 
-  // private slots:
-  // void update();
+private slots:
+  void update();
 };
 
 #endif
