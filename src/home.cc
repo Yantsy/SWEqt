@@ -18,7 +18,7 @@ home::~home() { std::cout << "program over" << std::endl; };
 
 void home::setupHomeUI() {
   // homepalette settup
-  this->resize(3140 / 4, 2560 / 4);
+  this->resize(2015 / 3, 1365 / 3);
   this->setWindowTitle("Swallow And Escape");
   homebgp = QPixmap(":/assets/bgp.png")
                 .scaled(this->size(), Qt::IgnoreAspectRatio,
@@ -26,15 +26,12 @@ void home::setupHomeUI() {
   homepalette.setBrush(this->backgroundRole(), QBrush(homebgp));
   this->setPalette(homepalette);
   // buttons setup
-  startbutton = buttonsetup(startbutton, "Start Game", this, 322, 100, 140, 40);
+  startbutton = buttonsetup(startbutton, "Start", this, 10, 20, 140, 25);
   continuebutton =
-      buttonsetup(continuebutton, "Continue", this, 322, 160, 140, 40);
-  loadbutton = buttonsetup(loadbutton, "Load Game", this, 322, 220, 140, 40);
-  settingbutton =
-      buttonsetup(settingbutton, "Setting", this, 322, 280, 140, 40);
-  rankbutton = buttonsetup(rankbutton, "Rank", this, 322, 340, 140, 40);
+      buttonsetup(continuebutton, "Continue", this, 10, 60, 140, 25);
+  settingbutton = buttonsetup(settingbutton, "Setting", this, 10, 100, 140, 25);
   quitgamebutton =
-      buttonsetup(quitgamebutton, "Quit Game", this, 322, 400, 140, 40);
+      buttonsetup(quitgamebutton, "Quit Game", this, 10, 140, 140, 25);
 }
 
 void home::startGame() {
