@@ -25,6 +25,7 @@ private:
   QPushButton *startbutton = nullptr, *continuebutton = nullptr,
               *loadbutton = nullptr, *settingbutton = nullptr,
               *rankbutton = nullptr, *quitgamebutton = nullptr;
+  QLabel *icon = nullptr;
   QPixmap homebgp;
   QPalette homepalette;
   // game *gamepage = new game();
