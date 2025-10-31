@@ -6,6 +6,8 @@
 #include <QGraphicsScene>
 #include <QGraphicsSvgItem>
 #include <QGraphicsView>
+#include <QImageReader>
+#include <QMovie>
 #include <QPalette>
 #include <QPoint>
 #include <QPushButton>
@@ -13,7 +15,6 @@
 #include <QWidget>
 #include <QtSvg>
 #include <QtSvgWidgets>
-
 class home : public QWidget {
   Q_OBJECT
 public:
@@ -25,7 +26,8 @@ private:
   QPushButton *startbutton = nullptr, *continuebutton = nullptr,
               *loadbutton = nullptr, *settingbutton = nullptr,
               *rankbutton = nullptr, *quitgamebutton = nullptr;
-  QLabel *icon = nullptr;
+  QLabel icon, movielabel;
+  QMovie *movie;
   QPixmap homebgp;
   QPalette homepalette;
   // game *gamepage = new game();

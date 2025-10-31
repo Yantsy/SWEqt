@@ -23,11 +23,22 @@ void home::setupHomeUI() {
   homebgp = QPixmap(":/assets/bgp.png")
                 .scaled(this->size(), Qt::IgnoreAspectRatio,
                         Qt::SmoothTransformation);
-  icon->setPixmap(QPixmap(":/assets/icon.png"));
-  icon->resize(48, 48);
-  icon->move(0, 0);
-  icon->setParent(this);
+  // icon setup
+  /*icon.resize(128, 128);
+  icon.setPixmap(QPixmap(":/assets/icon.png")
+                     .scaled(icon.size(), Qt::IgnoreAspectRatio,
+                             Qt::SmoothTransformation));
+  icon.move(this->width() - icon.width(), 0);
+  icon.setParent(this);*/
 
+  movie = new QMovie(":/assets/icon.gif");
+  movie->setScaledSize(QSize(128, 128));
+  movielabel.setParent(this);
+  movielabel.resize(128, 128);
+  movielabel.setMovie(movie);
+  movielabel.move(this->width() - movielabel.width(), 0);
+  // movielabel.show();
+  movie->start();
   homepalette.setBrush(this->backgroundRole(), QBrush(homebgp));
 
   this->setPalette(homepalette);

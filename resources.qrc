@@ -3,6 +3,7 @@
         <file>assets/maps.png</file>
         <file>assets/bgp.png</file>
         <file>assets/icon.png</file>
+        <file>assets/icon.gif</file>
         <file>assets/bgp.jpg</file>
     </qresource>
 </RCC>
