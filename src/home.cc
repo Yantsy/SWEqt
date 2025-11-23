@@ -36,7 +36,7 @@ void home::setupHomeUI() {
   movielabel.setParent(this);
   movielabel.resize(128, 128);
   movielabel.setMovie(movie);
-  movielabel.move(this->width() - movielabel.width(), 0);
+  movielabel.move((this->width() - movielabel.width()) / 2, 0);
   // movielabel.show();
   movie->start();
   homepalette.setBrush(this->backgroundRole(), QBrush(homebgp));
